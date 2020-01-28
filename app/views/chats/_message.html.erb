@@ -1,0 +1,3 @@
+<% Chat.order("created_at desc").each do |chat| %>
+  <div><%= chat.message %></div>
+<% end %>
