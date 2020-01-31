@@ -1,9 +1,23 @@
+<% if current_user.present? %>
+  <%  gravatar_id = Digest::MD5::hexdigest(current_user.email).downcase
+
+      url = "https://gravatar.com/avatar/#{gravatar_id}.png" %>
+  <%= image_tag(url ) %>
+  <%= current_user.email %><%= link_to(:sign_out,destroy_user_session_path,:method=>'delete') %>
+
+<% else %>
+  <%= link_to(:sign_up,new_user_registration_path) %>
+<% end %>
+<div class="online_count">
+
+</div>
 <div>
   <%= form_for @chat, :url => chat_path(), remote: true, method: :post do |f| %>
   <%= f.text_field :message,:class=>"messages_input" %>
   <%= f.submit %>
   <% end %>
 </div>
+
 <div class="messages">
   <%= render(:partial => 'message') %>
 </div>
