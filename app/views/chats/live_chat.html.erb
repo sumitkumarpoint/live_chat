@@ -1,0 +1,15 @@
+
+<div class="online_count">
+
+</div>
+<div>
+  <%= render(:partial=>'chat_form',:locals=>{chat: @chat}) %>
+</div>
+
+<div class="messages">
+  <%= render(:partial => 'message',:locals=>{chats: @chats}) %>
+</div>
+<script>
+    createMessageChannel();
+    $(".scroll").scrollTop($(".scroll")[0].scrollHeight);
+</script>

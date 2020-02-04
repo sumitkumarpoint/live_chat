@@ -8,16 +8,9 @@
 <% else %>
   <%= link_to(:sign_up,new_user_registration_path) %>
 <% end %>
+<% @users.each do |user| %>
+  <div><%= link_to "#{user.email}",chat_path(user.chat_room_id) %></div>
+<% end%>
 <div class="online_count">
 
-</div>
-<div>
-  <%= form_for @chat, :url => chat_path(), remote: true, method: :post do |f| %>
-  <%= f.text_field :message,:class=>"messages_input" %>
-  <%= f.submit %>
-  <% end %>
-</div>
-
-<div class="messages">
-  <%= render(:partial => 'message') %>
 </div>
