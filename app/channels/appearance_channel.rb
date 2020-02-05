@@ -5,9 +5,11 @@ class AppearanceChannel < ApplicationCable::Channel
     if current_user
       current_user.online = true
       current_user.save!
+      online_user_ids= User.where(online: true).pluck(:id)
       ActionCable.server.broadcast "appearance", {
           user:  current_user.id, online: :on,
-          users: User.where(online: true).count
+          online_user_ids: online_user_ids,
+          users: (online_user_ids.length-1)
       }
 
     end
@@ -18,9 +20,11 @@ class AppearanceChannel < ApplicationCable::Channel
     if current_user
       current_user.online = false
       current_user.save!
+      online_user_ids= User.where(online: true).pluck(:id)
       ActionCable.server.broadcast "appearance", {
           user:  current_user.id, online: :off,
-          users: User.where(online: true).count
+          online_user_ids: online_user_ids,
+          users:( online_user_ids.length-1)
       }
     end
   end

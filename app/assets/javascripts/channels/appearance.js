@@ -7,5 +7,13 @@ App.chat = App.cable.subscriptions.create("AppearanceChannel", {
     },
     received: function(data){
         $('.online_count').html("Online Users: "+data['users']);
+        var is_online = $('.is_online');
+        $.each(is_online, function( index, value ) {
+            if(data['online_user_ids'].includes(parseInt(value.id))){
+                value.style="color:green"
+            }else{
+                value.style="color:red"
+            }
+        });
     }
 })

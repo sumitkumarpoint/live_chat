@@ -1,6 +1,13 @@
 <%= form_for chat, :url => chat_path(), remote: true, method: :post do |f| %>
-  <%= f.hidden_field(:user_id,value: current_user.id.to_s) %>
+  <%= f.hidden_field(:user_id,value: current_user.id.to_s,class: "current_user")  %>
   <%= f.hidden_field(:chat_room_id,value: params[:chat_room_id],class: "message_chat_room_id") %>
-  <%= f.text_field :message,:class=>"messages_input" %>
-  <%= f.submit %>
+  <%= f.text_field :message,:class=>"messages_input",:autocomplete=>"off" %>
+  <%= f.submit :value=>">" %>
+
+<!--  <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>-->
+
+<!--  <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;-->
+<!--  <i class="fa fa-file-image-o"></i>-->
+
+<!--  <button>Send</button>-->
 <% end %>

@@ -10,8 +10,13 @@ function createMessageChannel() {
             console.log("disconnected");
         },
         received: function (data) {
-            $('.messages_input').val("");
             $('.messages').html(data['message']);
+            $('.common_class').addClass("others_message");
+            $('.user_'+$('.current_user').val()).addClass("clearfix my_message");
+            $('.user_'+$('.current_user').val()).removeClass("others_message");
+
+            $('.messages_input').val("");
+            // $(".messages").scrollTop($(".messages")[0].scrollHeight);
         }
     })
 }
