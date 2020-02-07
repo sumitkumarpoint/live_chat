@@ -1,0 +1,5 @@
+$('.messages').html("<%= j render(:partial => 'message',:locals=>{chats: @chats,broadcast: false}) %>")
+$('.chat-message').html("<%= j render(:partial=>'chat_form',:locals=>{chat: @chat}) %>")
+ $('.users_list').html("<%= j render(:partial => "chats/users_list",:locals => {users: @users}) %>")
+createMessageChannel();
+check_online();

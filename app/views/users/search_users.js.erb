@@ -1,0 +1,3 @@
+<% if @users.present? %>
+$('.search_user_list').html("<%= j render(:partial => 'search_user_list',:locals => {users: @users}) %>")
+<% end %>

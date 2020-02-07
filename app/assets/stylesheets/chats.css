@@ -40,10 +40,14 @@ body {
 }
 .people-list ul {
     padding: 20px;
-    height: 770px;
+    height: 635px;
+}
+ul {
+    list-style: none;
 }
 .people-list ul li {
     padding-bottom: 20px;
+    text-decoration: none;
 }
 .people-list img {
     float: left;
@@ -98,6 +102,9 @@ body {
     overflow-y: scroll;
     height: 575px;
 }
+.chat .welcome {
+    height: 770px;
+}
 .chat .chat-history .message-data {
     margin-bottom: 15px;
 }
@@ -141,9 +148,9 @@ body {
 .chat .chat-message {
     padding: 30px;
 }
-.chat .chat-message textarea {
-    width: 100%;
-    border: none;
+.chat .chat-message .messages_input {
+    width: 85%;
+    border: 1px solid #444752;
     padding: 10px 20px;
     font: 14px/22px "Lato", Arial, sans-serif;
     margin-bottom: 10px;

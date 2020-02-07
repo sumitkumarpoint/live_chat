@@ -8,9 +8,9 @@
 <% else %>
   <%= link_to(:sign_up,new_user_registration_path) %>
 <% end %>
-<% @users.each do |user| %>
-  <div><%= link_to "#{user.email}",chat_path(user.chat_room_id) %> <span class="is_online" id="<%= user.user_id %>"> o </span></div>
-<% end%>
-<div class="online_count">
+<%# @users.each do |user| %>
+<!--  <div><%#= link_to "#{user.email}",chat_path(user.chat_room_id) %> <span class="is_online" id="<%#= user.user_id %>"> o </span></div>-->
+<%# end%>
+<!--<div class="online_count">-->
 
-</div>
+<!--</div>-->

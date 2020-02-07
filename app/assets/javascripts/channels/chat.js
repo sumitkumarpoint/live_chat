@@ -15,7 +15,7 @@ function createMessageChannel() {
             $('.user_'+$('.current_user').val()).addClass("clearfix my_message");
             $('.user_'+$('.current_user').val()).removeClass("others_message");
 
-            $('.messages_input').val("");
+            $('.input_user_'+data['current_user_id'])[0].value="";
             // $(".messages").scrollTop($(".messages")[0].scrollHeight);
         }
     })

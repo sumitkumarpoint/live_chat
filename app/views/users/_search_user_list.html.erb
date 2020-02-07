@@ -1,0 +1,13 @@
+<% users.each do |user| %>
+ <%= link_to(chat_room_path(:user_id=>user.id)) do %>
+    <li class="clearfix">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
+      <div class="about">
+        <div class="name"><%= user.email.split('@')[0] %></div>
+        <div class="status">
+          <i class="fa fa-circle online"></i> <span class="is_online" id="<%= user.id %>"> o </span>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>
