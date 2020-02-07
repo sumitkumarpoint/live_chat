@@ -33,13 +33,15 @@
     <div class="search">
       <%#= select_tag(:search_users, options_for_select(User.all.pluck(:user_name, :id)), {:multiple => true, :class => "search_users_select2"}) %>
 <!--            <input type="text" placeholder="search" class=""/>-->
-      <%= form_tag('/search_users',:method => "get",remote: true) do%>
-      <%= text_field_tag(:term) %>
-        <%= submit_tag(:search) %>
+      <%= form_tag('/search_users',:method => "get",remote: true ,class: "search_user_form" ) do%>
+      <%= text_field_tag(:term,'',class: "search_user_input",:autocomplete=>"off" ,:placeholder=>"Search user") %>
       <% end %>
       <i class="fa fa-search"></i>
     </div>
-    <ul class="list users_list search_user_list">
+    <ul class="list users_list search_user_list hide_class">
+
+    </ul>
+    <ul class="list users_list default_user_list">
 
       <%= render(:partial => "chats/users_list", :locals => {users: @users}) %>
     </ul>

@@ -1,5 +1,10 @@
 <% if chats.present? %>
   <% all_users = User.all.pluck(:id, :email).to_h %>
+  <% unless chats.is_a?(Array) %>
+    <div class="hide_class">
+      <%= will_paginate chats %>
+    </div>
+  <% end %>
   <% chats.reverse().each do |chat| %>
     <li class="common_class <%= (broadcast == false && current_user.id == chat.user_id) ? "clearfix my_message" : "others_message" %> <%= "user_" + chat.user_id.to_s %>">
       <div class="message-data align-right">

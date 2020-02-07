@@ -1,7 +1,7 @@
-<%= form_for chat, :url => chat_path(), remote: true, method: :post do |f| %>
+<%= form_for( chat, :url => chat_path, remote: true, method: :post,:html => {class: "input_form_#{current_user.id}"}) do |f| %>
   <%= f.hidden_field(:user_id,value: current_user.id.to_s,class: "current_user")  %>
   <%= f.hidden_field(:chat_room_id,value: params[:chat_room_id],class: "message_chat_room_id") %>
-  <%= f.text_field :message,:class=>"messages_input input_user_#{current_user.id}",:autocomplete=>"off" %>
+  <%= f.text_field :message,:class=>"messages_input input_user_#{current_user.id}",:autofocus => true,:autocomplete=>"off" %>
   <%= f.file_field :attached_file,:class=>"attached_file_input",:autocomplete=>"off" %>
   <%#= f.button :value=>">" %>
   <button name="button" type="submit" value=">">send</button>

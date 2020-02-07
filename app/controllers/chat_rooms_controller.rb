@@ -7,7 +7,12 @@ class ChatRoomsController < ApplicationController
       @chat_room = ChatRoom.new
       if @chat_room.save
         @chat_room.subscriptions.create([{:user_id => current_user.id},{:user_id => params[:user_id]}])
+        Chat.create({message: "Hi" ,chat_room_id: @chat_room.id,user_id:current_user.id})
         redirect_to chat_path(:chat_room_id=>@chat_room.id)
+        users=users_list
+        ActionCable.server.broadcast "user_list" ,{
+            users_list:users_list,
+        }
       end
     else
       redirect_to chat_path(:chat_room_id=>chat_room_ids[0])

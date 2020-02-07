@@ -1,5 +1,12 @@
+<% if request.get? && params[:page].present? %>
+$('.messages').prepend("<%= j render(:partial => 'message',:locals=>{chats: @chats,broadcast: false}) %>")
+<% elsif request.get? && !params[:page.present?] %>
+alert('b')
 $('.messages').html("<%= j render(:partial => 'message',:locals=>{chats: @chats,broadcast: false}) %>")
 $('.chat-message').html("<%= j render(:partial=>'chat_form',:locals=>{chat: @chat}) %>")
- $('.users_list').html("<%= j render(:partial => "chats/users_list",:locals => {users: @users}) %>")
+ // $('.users_list').html("<%= j render(:partial => "chats/users_list",:locals => {users: @users}) %>")
 createMessageChannel();
-check_online();
+updateUserList();
+//check_online();
+$(".chat-history").scrollTop($(".chat-history")[0].scrollHeight);
+<% end %>

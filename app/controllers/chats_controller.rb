@@ -13,30 +13,25 @@ class ChatsController < ApplicationController
       if request.post?
         @chat_data = Chat.new(modal_params)
         if @chat_data.save
-          @chats = chats
+          # SendMessageJob.perform_later({chats: @chats,current_user: current_user})
           ActionCable.server.broadcast "chat_#{params[:chat_room_id]}", {
-              message: ChatsController.render(partial: "message", :locals => {chats: @chats, broadcast: true}).squish,
+              message: ChatsController.render(partial: "message", :locals => {chats: [@chat_data], broadcast: true}).squish,
               current_user_id: current_user.id
           }
         end
       else
         @chats = chats
+        respond_to do |format|
+          format.html
+          format.js
+        end
       end
-      OnlineUsersJob.perform_later({online: true,current_user: current_user})
     end
   end
 
-  def users_list
-    @users = []
-    if current_user.present?
-      chat_room_ids = Subscription.where(:user_id => current_user.id).pluck(:chat_room_id)
-      @users        = Subscription.select('users.email as email,users.id as user_id,subscriptions.chat_room_id as chat_room_id').left_joins(:user).where("chat_room_id in (?) AND user_id != ?", chat_room_ids, current_user.id)
-    end
-    return @users
-  end
 
   def chats
-    @chats = Chat.where(:chat_room_id => params[:chat_room_id]).limit(5).order("created_at desc")
+    @chats = Chat.where(:chat_room_id => params[:chat_room_id]).order("created_at desc").paginate(page: params[:page], per_page: 10)
   end
 
   private

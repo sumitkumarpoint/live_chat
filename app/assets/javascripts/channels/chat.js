@@ -10,13 +10,16 @@ function createMessageChannel() {
             console.log("disconnected");
         },
         received: function (data) {
-            $('.messages').html(data['message']);
+            $('.messages').append(data['message']);
             $('.common_class').addClass("others_message");
-            $('.user_'+$('.current_user').val()).addClass("clearfix my_message");
-            $('.user_'+$('.current_user').val()).removeClass("others_message");
+            $('.user_' + $('.current_user').val()).addClass("clearfix my_message");
+            $('.user_' + $('.current_user').val()).removeClass("others_message");
+            if (typeof $('.input_form_' + data['current_user_id'])[0] != 'undefined') {
+                $('.input_form_' + data['current_user_id'])[0].reset();
+            }
 
-            $('.input_user_'+data['current_user_id'])[0].value="";
-            // $(".messages").scrollTop($(".messages")[0].scrollHeight);
+            // document.getElementsByClassName('input_user_' + data['current_user_id'])[0].click();
+            $(".chat-history").scrollTop($(".chat-history")[0].scrollHeight);
         }
     })
 }

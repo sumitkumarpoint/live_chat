@@ -1,3 +1,8 @@
 <% if @users.present? %>
 $('.search_user_list').html("<%= j render(:partial => 'search_user_list',:locals => {users: @users}) %>")
+$('.search_user_list').show()
+$('.default_user_list').hide()
+<% else %>
+$('.default_user_list').show()
+$('.search_user_list').hide()
 <% end %>

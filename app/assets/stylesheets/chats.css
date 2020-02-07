@@ -62,7 +62,9 @@ ul {
 .people-list .status {
     color: #92959E;
 }
-
+.hide_class{
+    display: none;
+}
 .chat {
     width: 490px;
     float: left;
