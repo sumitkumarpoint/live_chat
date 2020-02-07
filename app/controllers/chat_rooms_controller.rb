@@ -10,8 +10,10 @@ class ChatRoomsController < ApplicationController
         Chat.create({message: "Hi" ,chat_room_id: @chat_room.id,user_id:current_user.id})
         redirect_to chat_path(:chat_room_id=>@chat_room.id)
         users=users_list
+        user_ids=[params[user_id],current_user.id]
         ActionCable.server.broadcast "user_list" ,{
             users_list:users_list,
+            user_ids: user_ids
         }
       end
     else
