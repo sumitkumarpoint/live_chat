@@ -44,9 +44,9 @@ $(document).ready(function () {
     // });
     if (typeof $(".message_chat_room_id").val() != 'undefined') {
         createMessageChannel();
-        updateUserList();
-    }
 
+    }
+    updateUserList();
     check_online();
 
 });

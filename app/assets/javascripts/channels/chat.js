@@ -10,14 +10,6 @@ function createMessageChannel() {
             console.log("disconnected");
         },
         received: function (response) {
-            if(users_ids.includes(parseInt($('.current_user').val()))){
-if(response['data'][$('.current_user').val()]){
-
-}else{
-
-}
-                $('.messages').append(resent_user);
-            }
             $('.messages').append(response['data']['message']);
             $('.common_class').addClass("others_message");
             $('.user_' + $('.current_user').val()).addClass("clearfix my_message");

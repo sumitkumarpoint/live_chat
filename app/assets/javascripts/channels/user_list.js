@@ -8,15 +8,15 @@ function updateUserList() {
         disconnected: function () {
             console.log("disconnected");
         },
-        received: function (data) {
-            $('.messages').append(data['message']);
-            $('.common_class').addClass("others_message");
-            $('.user_'+$('.current_user').val()).addClass("clearfix my_message");
-            $('.user_'+$('.current_user').val()).removeClass("others_message");
-
-            $('.input_user_'+data['current_user_id'])[0].value="";
-            document.getElementsByClassName('input_user_'+data['current_user_id'])[0].click();
-            $(".chat-history").scrollTop($(".chat-history")[0].scrollHeight);
+        received: function (response) {
+            if (response['user_ids'].includes(parseInt($('.current_login_user').val()))) {
+                if (response['data'][$('.current_login_user').val()]) {
+                    resent_user=response['data'][$('.current_user').val()]
+                } else {
+                    resent_user=response['data']['users_list']
+                }
+                $('.default_user_list').append(resent_user);
+            }
         }
     })
 }
