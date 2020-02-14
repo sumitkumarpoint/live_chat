@@ -9,8 +9,8 @@ function createMessageChannel() {
         disconnected: function () {
             console.log("disconnected");
         },
-        received: function (response) {
-            $('.messages').append(response['data']['message']);
+        received: function (data) {
+            $('.messages').append(data['message']);
             $('.common_class').addClass("others_message");
             $('.user_' + $('.current_user').val()).addClass("clearfix my_message");
             $('.user_' + $('.current_user').val()).removeClass("others_message");
